@@ -1,5 +1,8 @@
-let playerSelection = prompt("Choose Rock, Paper or Scissors")
 let computerSelection = Math.ceil(Math.random() *3);
+let t = 0;
+let l = 0;
+let w = 0;
+let badAnswer = 0;
 
 if (computerSelection < 1) {
   computerSelection = "rock";
@@ -8,37 +11,51 @@ if (computerSelection < 1) {
 } else {
   computerSelection = "scissors";
 }
-function playRound(playerSelection, computerSelection){
-    if (playerSelection === computerSelection) {
+function playRound(choice, computerSelection){
+      if (choice === computerSelection) {
+        t++
         return "It's a tie";
       }
-      if (playerSelection === "rock") {
+      if (choice === "rock") {
         if (computerSelection === "scissors") {
+          w++
           return "You Win!";
         } else {
-          return "Computer Wins!!";
+          l++
+          return "Computer Wins!";
         }
       }
-      if (playerSelection === "paper") {
+      if (choice === "paper") {
         if (computerSelection === "scissors") {
+          l++
           return "Computer Wins!";
         } else {
+          w++
           return "You Win!";
         }
       }
-      if (playerSelection === "scissors") {
+      if (choice === "scissors") {
         if (computerSelection === "rock") {
+          l++
           return "Computer Wins!";
         } else {
+          w++
           return "You Win!";
         }
       }
+      else{
+        return noResult = "Please type: Rock, Paper, or Scissors.";
+    }
 }
-function game(playRound){
-  for (let i = 0; i < 5; i++) {
-    playRound()
+function game(){
+  for (let i = 1; i < 6; i++) {
+    choice = prompt("Choose Rock, Paper or Scissors").toLowerCase()
+    alert("You picked: "+choice + `\r` + "The CPU picked: "+computerSelection + `\r` + playRound(choice, computerSelection))
+    alert(`Game: ` + i + `/5\r` + `Score:\rYou: ` + w +`\rCPU: ` + l + `\rTies: ` + t);
+    if (badAnswer == 1){
+        i--;
+        badAnswer--;
+    }
  }
 }
-console.log("You picked "+playerSelection)
-console.log("The CPU picked "+computerSelection)
-console.log(playRound(playerSelection, computerSelection));
+game();

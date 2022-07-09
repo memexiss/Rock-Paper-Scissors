@@ -1,15 +1,17 @@
-const playerSelection = prompt("Choose Rock, Paper or Scissors")
-const computerSelection = computerPlay();
-function computerPlay(){
-    const myArray = ["Rock", "Paper", "Scissors"];
-    return myArray[~~(Math.random() * myArray.length)]
-}  
+let playerSelection = prompt("Choose Rock, Paper or Scissors")
+let computerSelection = Math.ceil(Math.random() *3);
+
+if (computerSelection < 1) {
+  computerSelection = "rock";
+} else if(1 <= computerSelection <= 2) {
+  computerSelection = "paper";
+} else {
+  computerSelection = "scissors";
+}
 function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection) {
-        return "It is a tie";
+        return "It's a tie";
       }
-  
-      //Check for Rock
       if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
           return "You Win!";
@@ -17,7 +19,6 @@ function playRound(playerSelection, computerSelection){
           return "Computer Wins!!";
         }
       }
-      //Check for Paper
       if (playerSelection === "paper") {
         if (computerSelection === "scissors") {
           return "Computer Wins!";
@@ -25,15 +26,19 @@ function playRound(playerSelection, computerSelection){
           return "You Win!";
         }
       }
-      //Check for Scissors
       if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
           return "Computer Wins!";
         } else {
-                  return "You Win!";
+          return "You Win!";
         }
       }
 }
-console.log("You chosed "+playerSelection)
-console.log("The CPU chosed "+computerPlay())
+function game(playRound){
+  for (let i = 0; i < 5; i++) {
+    playRound()
+ }
+}
+console.log("You picked "+playerSelection)
+console.log("The CPU picked "+computerSelection)
 console.log(playRound(playerSelection, computerSelection));

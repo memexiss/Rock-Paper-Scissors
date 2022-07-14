@@ -9,7 +9,6 @@ const paper = document.createElement("button");
 const scissors = document.createElement("button");
 const p = document.createElement("p");
 const winner = document.createElement("h3");
-const restart = document.createElement("button");
 
 /*styles*/
 p.style.cssText += "color:white";
@@ -19,25 +18,15 @@ start.style.cssText += "border-radius: 10px;background-color:#a2a2c3;width: 160p
 rock.style.cssText += "border-radius: 10px;background-color:#a2a2c3;width: 160px; height: 160px; font-size:50px;";
 paper.style.cssText += "border-radius: 10px;background-color:#a2a2c3;width: 160px; height: 160px; font-size:50px;";
 scissors.style.cssText += "border-radius: 10px;background-color:#a2a2c3;width: 160px; height: 160px; font-size:50px;";
-
-start.innerHTML = "Start";
+start.innerHTML = "Play";
 rock.innerHTML = "✊";
 paper.innerHTML = "✋";
 scissors.innerHTML = "✌";
-restart.innerHTML = "Play Again";
-
 options.appendChild(start);
 results.appendChild(content);
 
 start.addEventListener("click", () => {
     game();
-});
-restart.addEventListener("click", () => {
-  options.removeChild(restart);
-  results.removeChild(winner, content);
-  options.appendChild(rock);
-  options.appendChild(paper);
-  options.appendChild(scissors);
 });
 rock.addEventListener("click", () => {
     content.textContent = playRound("rock", computerPlay());
@@ -66,7 +55,6 @@ function game() {
     options.appendChild(paper);
     options.appendChild(scissors);
 }
-
 function gameEnd() {
     if (playerScore == 5 || computerScore == 5) {
         options.removeChild(rock);
@@ -78,7 +66,6 @@ function gameEnd() {
             winner.textContent = "Computer Wins!";
         }
         results.replaceChild(winner, content);
-        results.appendChild(restart)
     }
 }
 
